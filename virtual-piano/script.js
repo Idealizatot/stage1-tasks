@@ -79,3 +79,30 @@ lettersButton.addEventListener('click', () => {
 	lettersButton.classList.add('btn-active')
 })
 
+const panel = document.getElementById('piano')
+
+const slide = event => checkClickMouse(event)
+panel.addEventListener('mousedown', () => {
+	pianoButtons.forEach(element => {
+		element.addEventListener('mouseover', slide)
+	})
+})
+
+panel.addEventListener('mouseup', () => {
+	pianoButtons.forEach(element => {
+		element.removeEventListener('mouseover', slide)
+	})
+})
+
+const toggleFullScreen = () => {
+  if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen()
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen()
+    }
+  }
+}
+
+const fullScreenButton = document.getElementById('fullscreen')
+fullScreenButton.addEventListener('click', toggleFullScreen)
